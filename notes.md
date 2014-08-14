@@ -3,18 +3,25 @@
 * Name (use fuzzy search)
 * Key card number
 * Cobot ID
-* Family ID
-* Notes
+* Family ID -- Generated on the fly
+* Added
+* Updated
+* Email address
+* Address
+* Zip code
 * Emergency contact information
-
-## Family Table
-Links family members through ID pairs
-* Unique ID
-* User Unique ID
+* Emergency care information
+* URL
+* Notes
+Many of these may be possible to auto-populate from cobot
 
 ## Class table
 * Unique ID
 * Class name
+* SBU
+* Description
+* Intended Audience
+* Prerequisites
 
 ## Training Table
 Links users to classes they have taken
