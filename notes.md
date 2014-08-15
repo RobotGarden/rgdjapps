@@ -1,5 +1,4 @@
 ## User table:
-* Unique ID
 * Name (use fuzzy search)
 * Key card number
 * Cobot ID
@@ -16,7 +15,6 @@
 Many of these may be possible to auto-populate from cobot
 
 ## Class table
-* Unique ID
 * Class name
 * SBU
 * Description
@@ -29,6 +27,9 @@ Links users to classes they have taken
 * Class ID
 
 ## Equipment Table
-* Unique ID
+* Name
+* Description
 * Training Unique ID
+* Info URL
+* Endpoint URL
 * Equipment inventory / maintentance information

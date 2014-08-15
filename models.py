@@ -9,9 +9,9 @@ class RGUser(models.Model):
                                 help_text="Enter without dashes")
     cobot_id = models.CharField(max_length=128, blank=True,
                                 verbose_name="Member's ID in the cobot system")
-    family_id = models.CharField(max_length=32, blank=True, null=True,
-                                verbose_name="ID for family memberships",
-                                help_text="128 bit UUID as hex")
+    primary_user = models.ForeignKey('self', blank=True, null=True,
+                                     verbose_name="Family primary membership",
+                                     help_text="ID of primary user for family memberships")
     created = models.DateTimeField(auto_now_add=True, editable=False,
                                    verbose_name="User entry created time stamp")
     updated = models.DateTimeField(auto_now=True,
@@ -44,3 +44,13 @@ class RGClass(models.Model):
     audience = models.CharField(verbose_name="Indended audience",
                                 help_text="E.g. all / teen / adult / under 10")
     prerequisites = models.CharField(help_text="Required backgrount to take this course")
+
+class Trainig(models.Model):
+    "Many to many table of classes users have taken."
+    user = models.ForeignKey('RGUser', verbose_name="User ID for entry")
+    cls  = models.ForeignKey('RGClass', verbose_name="Class ID for entry")
+
+class Equipment(models.Model):
+    "Stores information about a given piece of equipment"
+    name = models.CharField(max_length=256,
+                            verbose_name="Equipment name")
