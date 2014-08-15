@@ -45,12 +45,36 @@ class RGClass(models.Model):
                                 help_text="E.g. all / teen / adult / under 10")
     prerequisites = models.CharField(help_text="Required backgrount to take this course")
 
-class Trainig(models.Model):
+class RGTrainig(models.Model):
     "Many to many table of classes users have taken."
     user = models.ForeignKey('RGUser', verbose_name="User ID for entry")
     cls  = models.ForeignKey('RGClass', verbose_name="Class ID for entry")
 
-class Equipment(models.Model):
+class RGEquipment(models.Model):
     "Stores information about a given piece of equipment"
     name = models.CharField(max_length=256,
                             verbose_name="Equipment name")
+    description = models.TextField(blank=True, null=True)
+    sbu = models.ForeignKey('RGClass', blank=True, null=True,
+                            verbose_name="Training class",
+                            help_text="The class which qualifies users to use this piece of equipment")
+    info_url = models.URLField(blank=True,
+                               verbose_name="Information link",
+                               help_text="Link for more information about the equipment")
+    endpoint = models.URLField(blank=True,
+                               verbose_name="Automation API endpoint URL",
+                               help_text="URL for automation API for equipment if any")
+    rest = models.TextField(blank=True,
+                            verbose_name="Inventory / maintenance / other information",
+                            help_text="Freeform or JSON encoded data")
+
+
+class RGCheckins(models.Model):
+    "Tracks user checkin information"
+    user = models.ForeignKey('RGUser', editable=False)
+    when = models.DateTimeField(auto_now_add=True, editable=False
+                                verbose_name="Checkin date/time")
+    eq   = models.ForeignKey('RGEquipment', editable=False, blank=True, null=True,
+                             verbose_name="Equipment used (if any)")
+    cls  = models.ForeignKey('RGClass', editable=False, blank=True, null=True,
+                             verbose_name="Class taken (if any)")

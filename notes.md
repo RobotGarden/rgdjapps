@@ -33,3 +33,10 @@ Links users to classes they have taken
 * Info URL
 * Endpoint URL
 * Equipment inventory / maintentance information
+
+## Checkin table
+Track use information
+* User ID
+* Datetime
+* Class ID or null
+* Equipment ID or null
