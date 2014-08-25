@@ -78,3 +78,6 @@ class RGCheckins(models.Model):
                              verbose_name="Equipment used (if any)")
     cls  = models.ForeignKey('RGClass', editable=False, blank=True, null=True,
                              verbose_name="Class taken (if any)")
+    current = models.BooleanField(editable=False,
+                                  verbose_name='Membership current',
+                                  help_text='Membership payment current at time of checkin.')
